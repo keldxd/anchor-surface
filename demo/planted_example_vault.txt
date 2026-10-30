@@ -1,0 +1,22 @@
+anchor-surface 0.1.0
+program: example_vault
+old:     tests/fixtures/vault_v1.json (Anchor 0.30+ IDL, 4 instructions)
+new:     tests/fixtures/vault_v2_planted.json (Anchor 0.30+ IDL, 5 instructions)
+
+DANGER  initialize / admin  [address-removed]
+        was fixed to Adm1n1111111111111111111111111111111111111; any signer can now act here unless the program checks the key in code
+DANGER  deposit / vault  [pda-changed]
+        PDA seeds changed from seeds=["vault", account:mint] to seeds=["vault_v2", account:mint]; accounts created with the old seeds no longer match
+DANGER  withdraw / owner  [signer-removed]
+        no longer required to sign; any account can be passed here without its signature unless the program checks it in code
+DANGER  withdraw / position  [relation-removed]
+        relation `owner` removed (has_one check); this account is no longer tied to `owner`
+DANGER  set_fee / config  [relation-removed]
+        relation `admin` removed (has_one check); this account is no longer tied to `admin`
+REVIEW  deposit / mint  [writable-added]
+        now writable; the instruction can modify this account
+REVIEW  emergency_sweep  [instruction-added]
+        new instruction; no account must sign, so anyone can call it; writes to 3 account(s)
+
+5 danger, 2 review, 0 info
+Only changes visible in the IDL are checked. Checks written in program code (require!, custom constraint expressions, manual key comparisons) are not, so no findings does not mean the upgrade is safe.

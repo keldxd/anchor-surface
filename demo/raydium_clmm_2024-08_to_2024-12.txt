@@ -1,0 +1,12 @@
+anchor-surface 0.1.0
+program: amm_v3
+old:     clmm_2024-08.json (legacy IDL (before Anchor 0.30), 23 instructions)
+new:     clmm_2024-12.json (legacy IDL (before Anchor 0.30), 24 instructions)
+
+DANGER  openPositionV2  [args-changed]
+        instruction arguments changed (added `withMetadata: bool`; removed `withMatedata: bool`); existing clients will encode the wrong data
+REVIEW  openPositionWithToken22Nft  [instruction-added]
+        new instruction; must be signed by: payer, positionNftMint; writes to 12 account(s)
+
+1 danger, 1 review, 0 info
+Only changes visible in the IDL are checked. Checks written in program code (require!, custom constraint expressions, manual key comparisons) are not, so no findings does not mean the upgrade is safe.

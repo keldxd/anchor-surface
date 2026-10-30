@@ -1,0 +1,70 @@
+anchor-surface 0.1.0
+program: raydium_clmm
+old:     clmm_2025-06.json (Anchor 0.30+ IDL, 25 instructions)
+new:     clmm_2026-05.json (Anchor 0.30+ IDL, 34 instructions)
+
+DANGER  create_amm_config / owner  [address-changed]
+        fixed address changed from GThUX1Atko4tqhN2NaiTazWSeFWMuiUvfFnyJyUghFMJ to 2kqJncUWCkk5TyJYamPW5DECfqAz4brYpH6r5j6vg9yx
+DANGER  create_operation_account / owner  [address-changed]
+        fixed address changed from GThUX1Atko4tqhN2NaiTazWSeFWMuiUvfFnyJyUghFMJ to 2kqJncUWCkk5TyJYamPW5DECfqAz4brYpH6r5j6vg9yx
+DANGER  create_support_mint_associated / owner  [address-removed]
+        was fixed to GThUX1Atko4tqhN2NaiTazWSeFWMuiUvfFnyJyUghFMJ; any signer can now act here unless the program checks the key in code
+DANGER  decrease_liquidity / protocol_position  [pda-removed]
+        PDA seed check removed (was seeds=["position", account:poolstate, account:personalposition.ticklowerindex(personalpositionstate), account:personalposition.tickupperindex(personalpositionstate)]); any account can now be passed here unless the program checks it in code
+DANGER  decrease_liquidity_v2 / protocol_position  [pda-removed]
+        PDA seed check removed (was seeds=["position", account:poolstate, account:personalposition.ticklowerindex(personalpositionstate), account:personalposition.tickupperindex(personalpositionstate)]); any account can now be passed here unless the program checks it in code
+DANGER  increase_liquidity / protocol_position  [pda-removed]
+        PDA seed check removed (was seeds=["position", account:poolstate, account:personalposition.ticklowerindex(personalpositionstate), account:personalposition.tickupperindex(personalpositionstate)]); any account can now be passed here unless the program checks it in code
+DANGER  increase_liquidity_v2 / protocol_position  [pda-removed]
+        PDA seed check removed (was seeds=["position", account:poolstate, account:personalposition.ticklowerindex(personalpositionstate), account:personalposition.tickupperindex(personalpositionstate)]); any account can now be passed here unless the program checks it in code
+DANGER  open_position / protocol_position  [pda-removed]
+        PDA seed check removed (was seeds=["position", account:poolstate, arg:ticklowerindex, arg:tickupperindex]); any account can now be passed here unless the program checks it in code
+DANGER  open_position_v2 / protocol_position  [pda-removed]
+        PDA seed check removed (was seeds=["position", account:poolstate, arg:ticklowerindex, arg:tickupperindex]); any account can now be passed here unless the program checks it in code
+DANGER  open_position_with_token22_nft / protocol_position  [pda-removed]
+        PDA seed check removed (was seeds=["position", account:poolstate, arg:ticklowerindex, arg:tickupperindex]); any account can now be passed here unless the program checks it in code
+DANGER  transfer_reward_owner / authority  [address-changed]
+        fixed address changed from GThUX1Atko4tqhN2NaiTazWSeFWMuiUvfFnyJyUghFMJ to 2kqJncUWCkk5TyJYamPW5DECfqAz4brYpH6r5j6vg9yx
+DANGER  update_amm_config / owner  [address-changed]
+        fixed address changed from GThUX1Atko4tqhN2NaiTazWSeFWMuiUvfFnyJyUghFMJ to 2kqJncUWCkk5TyJYamPW5DECfqAz4brYpH6r5j6vg9yx
+DANGER  update_operation_account / owner  [address-changed]
+        fixed address changed from GThUX1Atko4tqhN2NaiTazWSeFWMuiUvfFnyJyUghFMJ to 2kqJncUWCkk5TyJYamPW5DECfqAz4brYpH6r5j6vg9yx
+DANGER  update_pool_status / authority  [address-changed]
+        fixed address changed from GThUX1Atko4tqhN2NaiTazWSeFWMuiUvfFnyJyUghFMJ to 2kqJncUWCkk5TyJYamPW5DECfqAz4brYpH6r5j6vg9yx
+REVIEW  close_limit_order  [instruction-added]
+        new instruction; must be signed by: signer; writes to 2 account(s)
+REVIEW  close_protocol_position  [instruction-added]
+        new instruction; must be signed by: admin; writes to 2 account(s)
+REVIEW  collect_remaining_rewards / reward_token_vault  [writable-added]
+        now writable; the instruction can modify this account
+REVIEW  create_customizable_pool  [instruction-added]
+        new instruction; must be signed by: pool_creator; writes to 6 account(s)
+REVIEW  create_dynamic_fee_config  [instruction-added]
+        new instruction; must be signed by: owner; writes to 2 account(s)
+REVIEW  decrease_limit_order  [instruction-added]
+        new instruction; must be signed by: owner; writes to 7 account(s)
+REVIEW  increase_limit_order  [instruction-added]
+        new instruction; must be signed by: owner; writes to 4 account(s)
+REVIEW  open_limit_order  [instruction-added]
+        new instruction; must be signed by: payer; writes to 7 account(s)
+REVIEW  settle_limit_order  [instruction-added]
+        new instruction; must be signed by: signer; writes to 3 account(s)
+REVIEW  update_dynamic_fee_config  [instruction-added]
+        new instruction; must be signed by: owner; writes to 1 account(s)
+INFO    decrease_liquidity / protocol_position  [writable-removed]
+        no longer writable
+INFO    decrease_liquidity_v2 / protocol_position  [writable-removed]
+        no longer writable
+INFO    increase_liquidity / protocol_position  [writable-removed]
+        no longer writable
+INFO    increase_liquidity_v2 / protocol_position  [writable-removed]
+        no longer writable
+INFO    open_position / protocol_position  [writable-removed]
+        no longer writable
+INFO    open_position_v2 / protocol_position  [writable-removed]
+        no longer writable
+INFO    open_position_with_token22_nft / protocol_position  [writable-removed]
+        no longer writable
+
+14 danger, 10 review, 7 info
+Only changes visible in the IDL are checked. Checks written in program code (require!, custom constraint expressions, manual key comparisons) are not, so no findings does not mean the upgrade is safe.

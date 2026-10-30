@@ -1,0 +1,15 @@
+[package]
+name = "anchor-surface"
+version = "0.1.0"
+edition = "2021"
+description = "Diff two Anchor IDLs and flag changes to who can call what: signers, writable accounts, fixed addresses, PDA seeds and has_one relations."
+license = "MIT"
+repository = "https://github.com/keldxd/anchor-surface"
+readme = "README.md"
+keywords = ["solana", "anchor", "security", "idl", "audit"]
+categories = ["command-line-utilities", "development-tools"]
+
+[dependencies]
+
+[profile.release]
+strip = true

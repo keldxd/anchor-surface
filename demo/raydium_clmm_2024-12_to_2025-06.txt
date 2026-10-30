@@ -1,0 +1,12 @@
+anchor-surface 0.1.0
+program: amm_v3
+old:     clmm_2024-12.json (legacy IDL (before Anchor 0.30), 24 instructions)
+new:     clmm_2025-06.json (Anchor 0.30+ IDL, 25 instructions)
+
+REVIEW  create_support_mint_associated  [instruction-added]
+        new instruction; must be signed by: owner; writes to 2 account(s)
+
+note: The two IDLs use different formats (old: legacy IDL (before Anchor 0.30), new: Anchor 0.30+ IDL). Signers, writable and optional flags, accounts, account order and arguments were compared. Fixed addresses, PDA seeds and relations were NOT compared, because the older format does not reliably record them.
+
+0 danger, 1 review, 0 info
+Only changes visible in the IDL are checked. Checks written in program code (require!, custom constraint expressions, manual key comparisons) are not, so no findings does not mean the upgrade is safe.

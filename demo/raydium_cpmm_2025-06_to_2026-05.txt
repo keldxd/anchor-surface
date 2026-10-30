@@ -1,0 +1,18 @@
+anchor-surface 0.1.0
+program: raydium_cp_swap
+old:     cpmm_2025-06.json (Anchor 0.30+ IDL, 10 instructions)
+new:     cpmm_2026-05.json (Anchor 0.30+ IDL, 14 instructions)
+
+DANGER  create_amm_config  [args-changed]
+        instruction arguments changed (added `creator_fee_rate: u64`); existing clients will encode the wrong data
+REVIEW  close_permission_pda  [instruction-added]
+        new instruction; must be signed by: owner; writes to 2 account(s)
+REVIEW  collect_creator_fee  [instruction-added]
+        new instruction; must be signed by: creator; writes to 6 account(s)
+REVIEW  create_permission_pda  [instruction-added]
+        new instruction; must be signed by: owner; writes to 2 account(s)
+REVIEW  initialize_with_permission  [instruction-added]
+        new instruction; must be signed by: payer; writes to 10 account(s)
+
+1 danger, 4 review, 0 info
+Only changes visible in the IDL are checked. Checks written in program code (require!, custom constraint expressions, manual key comparisons) are not, so no findings does not mean the upgrade is safe.
